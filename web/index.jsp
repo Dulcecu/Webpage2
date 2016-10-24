@@ -26,6 +26,7 @@
 </div>
   <footer id="foot01"></footer>
   </div>
+
 </div>
 
 <script src="script3.js"></script>
