@@ -20,19 +20,19 @@ public class Fibonacci extends HttpServlet {
         double sol=0;
         if("SUMA".equals(operacion)){
             sol=operador1+operador2;
-            out.print("<html><body><h1>LA "+operacion+" DA: "+sol+"</h1></body></html>");
+            out.print("<html><link href=\"http://localhost:8080/site.css\" rel=\"stylesheet\"><body><h1>LA "+operacion+" DA: "+sol+"</h1></body></html>");
         }
         if("RESTA".equals(operacion)){
             sol=operador1-operador2;
-            out.print("<html><body><h1>LA "+operacion+" DA: "+sol+"</h1></body></html>");
+            out.print("<html><link href=\"http://localhost:8080/site.css\" rel=\"stylesheet\"><body><h1>LA "+operacion+" DA: "+sol+"</h1></body></html>");
         }
         if("MULTIPLICACION".equals(operacion)){
             sol=operador1*operador2;
-            out.print("<html><body><h1>LA "+operacion+" DA: "+sol+"</h1></body></html>");
+            out.print("<html><link href=\"http://localhost:8080/site.css\" rel=\"stylesheet\"><body><h1>LA "+operacion+" DA: "+sol+"</h1></body></html>");
         }
         if("DIVISION".equals(operacion)){
             sol=operador1/operador2;
-            out.print("<html><body><h1>LA "+operacion+" DA: "+sol+"</h1></body></html>");
+            out.print("<html><link href=\"http://localhost:8080/site.css\" rel=\"stylesheet\"><body><h1>LA "+operacion+" DA: "+sol+"</h1></body></html>");
         }
 
     }
@@ -43,7 +43,7 @@ public class Fibonacci extends HttpServlet {
         response.getOutputStream().println("<!DOCTYPE html><head>\n" +
                 "    <title>Fibonacci</title>\n" +
                 "    <meta charset=\"UTF-8\">\n" +
-                "    <link href=\"site.css\" rel=\"stylesheet\">\n" +
+                "    <link href=\"http://localhost:8080/site.css\" rel=\"stylesheet\">" +
                 "</head><body>\n" +
                 "\n" +
                 "<nav id=\"nav01\"></nav><div id=\"main\"><table style=\"width:100%\">\n" +
