@@ -14,12 +14,13 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="https://makeameme.org/meme/this-webpage-is">DSA</a>
+            <a class="navbar-brand" href="https://media.makeameme.org/created/this-webpage-is.jpg">DSA</a>
         </div>
         <ul class="nav navbar-nav">
-            <li class="active"><a href="Calculadora.jsp">Calculadora</a></li>
             <li><a href="index.jsp">Inicio</a></li>
             <li><a href="Fibonacci.jsp">Fibonacci</a></li>
+            <li class="active"><a href="Calculadora.jsp">Calculadora</a></li>
+
         </ul>
     </div>
 </nav>
@@ -30,14 +31,15 @@
 
     <form action="/Fibonacci/" method="post">
         <div class="form-group">
-            <label for="operador1">Operador 1</label>
-            <input class="form-control" id="operador1" type="number" step="any">
+            <label>Operador 1</label>
+            <input class="form-control" name="operador1" type="number" step="any">
         </div>
 
         <div class="form-group">
-            <label for="operador2">Operador 1</label>
-            <input class="form-control" id="operador2" type="number" step="any">
+            <label>Operador 2</label>
+            <input class="form-control" name="operador2" type="number" step="any">
         </div>
+
 
         <select operacion="operacion" name="operacion">
             <option value="SUMA">SUMA</option>
@@ -46,7 +48,11 @@
             <option value="DIVISION">DIVISION</option>
         </select>
 
-        <input type="submit" value="Aceptar">
+        <input type="submit" class="btn btn-primary center-block " value="Aceptar">
+
+
+
+
     </form>
 
 
