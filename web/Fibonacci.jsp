@@ -25,6 +25,7 @@
             <li><a href="index.jsp">Inicio</a></li>
             <li class="active"><a href="Fibonacci.jsp">Fibonacci</a></li>
             <li><a href="Calculadora.jsp">Calculadora</a></li>
+            <li><a href="Extra.jsp">Extra</a></li>
         </ul>
     </div>
 </nav>
