@@ -43,7 +43,7 @@ public class Fibonacci extends HttpServlet {
     }
 // funcion del get
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        int fibo1 = 1;
+        /*int fibo1 = 1;
         int fibo2 = 1;
         //el request.getParameter recoge el valor con el nombre de variable definido en el jsp
         int numero = Integer.parseInt(request.getParameter("sucesiones"));
@@ -56,12 +56,16 @@ public class Fibonacci extends HttpServlet {
             fibo1 = fibo2 - fibo1;
 
         }
+        */
+        response.setContentType("text/html;charset=UTF-8");
+        response.getWriter().write("Success Data");
         // una vez realizada la operacion le da el valor a la variable llamada "fibo"(puede ser cualquier nombre)
         // con el comando request.setAttribute( puede ser cualquier variable, hasta listas)
-        request.setAttribute("fibo", fibo);
+        //request.setAttribute("fibo", fibo);
+
         //una vez el valor esta establecido, con el codigo de abajo abre la pagina jsp llamada "ResultadosFibonacci" y le pasa el
         //valor en el request ( que en el jsp lo llamara "fibo" que es como se ha establecido que se llame)
         //y con el response se lo transmite ( el response solo permite trnasmitir, nada mas)
-        request.getRequestDispatcher("/ResultadosFibonacci.jsp").forward(request, response);
+        //request.getRequestDispatcher("/ResultadosFibonacci.jsp").forward(request, response);
     }
 }

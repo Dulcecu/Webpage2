@@ -1,18 +1,25 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Fibonacci</title>
     <meta charset="utf-8">
-    <%-- CODIGO PARA UTILIZAR LOS BOOTSTRAPS --%>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="script3.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#btn1").click(function (){
+                $.get("Fibonacci", function(responseText) {
+                    alert(responseText);
+                });
+            });
+        });
+    </script>
 </head>
-
 <body>
+
 <%-- AÑADE BARRA DE NAVEGACION ( EL MENU SUPERIOR) --%>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -45,15 +52,13 @@
             <input type="submit" class="btn btn-primary center-block" value="Aceptar" />
         </div>
 
-
-
     </form>
 
-    <footer id="foot01"></footer>
+        <button id="btn1" class="btn btn-primary center-block">V2 de Fibonacci</button>
+
+        <footer id="foot01"></footer>
         </div>
+
 </div>
-
-<script src="script3.js"></script>
-
 </body>
 </html>
