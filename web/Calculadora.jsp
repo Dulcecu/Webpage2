@@ -6,8 +6,17 @@
     <%-- CODIGO PARA UTILIZAR LOS BOOTSTRAPS --%>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#btn1").click(function (){
+                $.post("/Fibonacci/", function(responseText) {
+                    $("#res").text("El resultado es "+responseText);
+                });
+            });
+        });
+    </script>
 
 </head>
 <body>
@@ -33,9 +42,10 @@
     <div class="jumbotron">
     <h1>Calculadora</h1>
         <%-- CODIGO PARA UTILIZAR EL SERVLET DE FIBONACCI (METODO POST )(CALCULADORA ESTE EN EL MISMO SERVLET) --%>
-    <form action="/Fibonacci/" method="post">
 
         <%-- CODIGO PARA UTILIZAR FUNCIONES CON BOOTSTRAPS --%>
+        <form action="/Fibonacci/" method="post">
+
         <div class="form-group">
             <label>Operador 1</label>
             <%-- TIPO DE VARIABLE Y NOMBRE DE VARIABLE ( EL NOMBRE SE USA EN EL SERVLET)(STEP ANY PERMITE DECIMALES) --%>
@@ -48,6 +58,8 @@
             <input class="form-control" name="operador2" type="number" step="any">
         </div>
 
+
+
             <%-- CODIGO QUE PERMITE ELEGIR MULTIPLES OPCIONES Y EL NOMBRE DE LA VARIABLE(EL NOMBRE SE USA EN EL SERVLET)  --%>
         <select operacion="operacion" name="operacion">
             <option value="SUMA">SUMA</option>
@@ -58,11 +70,11 @@
             <%-- ESTILO DEL BOTON PARA REALIZAR EL SERVLET Y EL TEXTO QUE TIENE --%>
         <input type="submit" class="btn btn-primary center-block " value="Aceptar">
 
+        </form>
 
 
-
-    </form>
-
+        <button id="btn1" class="btn btn-primary center-block">V2 de Calculadora</button>
+        <h2 id="res"></h2>
 
     <footer id="foot01"></footer>
         </div>

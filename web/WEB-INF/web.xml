@@ -5,28 +5,24 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd"
            version="3.0">
     <servlet>
-
         <servlet-name>Fibonacci</servlet-name>
         <servlet-class>Fibonacci</servlet-class>
-
     </servlet>
-
     <servlet-mapping>
         <servlet-name>Fibonacci</servlet-name>
         <url-pattern>/Fibonacci/</url-pattern>
     </servlet-mapping>
 
     <servlet>
-
-        <servlet-name>Main</servlet-name>
-        <servlet-class>Main</servlet-class>
-
+    <servlet-name>Main</servlet-name>
+    <servlet-class>Main</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>Main</servlet-name>
         <url-pattern>/Main/</url-pattern>
     </servlet-mapping>
+
 
 
 

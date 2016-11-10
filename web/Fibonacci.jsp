@@ -11,13 +11,17 @@
     <script>
         $(document).ready(function(){
             $("#btn1").click(function (){
-                $.get("Fibonacci", function(responseText) {
-                    alert(responseText);
+                $.get("/Fibonacci/", function(responseJson) {
+                    var $ul = $("<ul>").appendTo($("#res")); // Create HTML <ul> element and append it to HTML DOM element with ID "somediv".
+                    $.each(responseJson, function(index, item) { // Iterate over the JSON array.
+                        $("<li>").text(item).appendTo($ul);
                 });
             });
         });
+    });
     </script>
 </head>
+
 <body>
 
 <%-- AÑADE BARRA DE NAVEGACION ( EL MENU SUPERIOR) --%>
@@ -41,7 +45,6 @@
     <h1>Serie de Fibonacci</h1>
 
         <%-- CODIGO PARA UTILIZAR EL SERVLET DE FIBONACCI (METODO GET) --%>
-    <form action="/Fibonacci/" method="get">
 
         <%-- CODIGO PARA UTILIZAR FUNCIONES CON BOOTSTRAPS --%>
         <div class="form-group">
@@ -52,9 +55,8 @@
             <input type="submit" class="btn btn-primary center-block" value="Aceptar" />
         </div>
 
-    </form>
-
         <button id="btn1" class="btn btn-primary center-block">V2 de Fibonacci</button>
+        <h2 id="res"></h2>
 
         <footer id="foot01"></footer>
         </div>
