@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>servlets.Fibonacci</title>
+    <title>Fibonacci</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -28,7 +28,10 @@
         });
     });
     </script>
+
 </head>
+
+
 
 <body>
 
@@ -39,7 +42,7 @@
         </div>
         <ul class="nav navbar-nav">
             <li><a href="index.jsp">Inicio</a></li>
-            <li class="active"><a href="Fibonacci.jsp">servlets.Fibonacci</a></li>
+            <li class="active"><a href="Fibonacci.jsp">Fibonacci</a></li>
             <li><a href="Calculadora.jsp">Calculadora</a></li>
             <li><a href="Extra.jsp">Extra</a></li>
         </ul>
@@ -47,7 +50,7 @@
 </nav>
 <div class="container">
     <div class="jumbotron">
-    <h1>Serie de servlets.Fibonacci</h1>
+    <h1>Serie de Fibonacci</h1>
 
         <div class="form-group">
             <label>Selecciona la cantidad de sucesiones</label>

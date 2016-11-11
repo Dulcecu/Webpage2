@@ -15,10 +15,23 @@ public class Fibonacci extends HttpServlet
 {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        Float operador1=0f;
+        Float operador2= 0f;
+        String operacion=null;
 
-        Float operador1 = Float.parseFloat(request.getParameter("operador1"));
-        Float operador2 = Float.parseFloat(request.getParameter("operador2"));
-        String operacion = request.getParameter("operacion");
+        try {
+            operador1 = Float.parseFloat(request.getParameter("operador1"));
+        }
+        catch (Exception e){
+        }
+        try {
+            operador2 = Float.parseFloat(request.getParameter("operador2"));
+        }
+        catch (Exception e) {
+        }
+        operacion = request.getParameter("operacion");
+
+
         double sol = 0;
         if ("SUMA".equals(operacion)) {
             sol = operador1 + operador2;

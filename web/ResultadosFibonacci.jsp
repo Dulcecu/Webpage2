@@ -28,14 +28,14 @@
             <%-- DIVISIONES DE LA BARRA Y SUS VINCULOS --%>
         <ul class="nav navbar-nav">
             <li><a href="/index.jsp">Inicio</a></li>
-            <li><a href="/Fibonacci.jsp">servlets.Fibonacci</a></li>
+            <li><a href="/Fibonacci.jsp">Fibonacci</a></li>
             <li><a href="/Calculadora.jsp">Calculadora</a></li>
             <li><a href="/Extra.jsp">Extra</a></li>
         </ul>
     </div>
 </nav>
 <div class="jumbotron">
-    <h1 class="text-center">Resultados servlets.Fibonacci</h1>
+    <h1 class="text-center">Resultados Fibonacci</h1>
     <div class="container">
         <body>
         <%-- EL CODIGO DEL FOR RECOGE LA LISTA GENERADA POR EL SERVLET DE FIBONACCI (ITEMS="${FIBO}"} DONDE LA LISTA SE LLAMA "FIBO")
