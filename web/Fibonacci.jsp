@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Fibonacci</title>
+    <title>servlets.Fibonacci</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -12,12 +12,19 @@
         $(document).ready(function(){
             $("#btn1").click(function (){
                 var sucesiones=$("#sucesiones").val();
-                $.get("/Fibonacci/",{sucesiones:sucesiones}, function(responseJson) {
-                    var $ul = $("<ul>").appendTo($("#res"));
-                    $.each(responseJson, function(index, item) {
-                        $("<li>").text(item).appendTo($ul);
+                $("#res").text("");
+                $.get("/Fibonacci",{sucesiones:sucesiones}, function(responseJson) {
+                    if(responseJson!="ERROR")
+                    {
+                        var $ul = $("<ul>").appendTo($("#res"));
+                        $.each(responseJson, function(index, item) {
+                            $("<li>").text(item).appendTo($ul)});
+                    }
+                    else{
+
+                   alert("No puedes poner numeros negativos")}
+
                 });
-            });
         });
     });
     </script>
@@ -32,7 +39,7 @@
         </div>
         <ul class="nav navbar-nav">
             <li><a href="index.jsp">Inicio</a></li>
-            <li class="active"><a href="Fibonacci.jsp">Fibonacci</a></li>
+            <li class="active"><a href="Fibonacci.jsp">servlets.Fibonacci</a></li>
             <li><a href="Calculadora.jsp">Calculadora</a></li>
             <li><a href="Extra.jsp">Extra</a></li>
         </ul>
@@ -40,16 +47,17 @@
 </nav>
 <div class="container">
     <div class="jumbotron">
-    <h1>Serie de Fibonacci</h1>
+    <h1>Serie de servlets.Fibonacci</h1>
 
         <div class="form-group">
             <label>Selecciona la cantidad de sucesiones</label>
             <input class="form-control" id="sucesiones" type="number">
-            <input type="submit" class="btn btn-primary center-block" value="Aceptar" />
-        </div>
+
 
         <button id="btn1" class="btn btn-primary center-block">V2 de Fibonacci</button>
-        <h2 id="res"></h2>
+        <p id="res"></p>
+
+        </div>
 
         <footer id="foot01"></footer>
         </div>

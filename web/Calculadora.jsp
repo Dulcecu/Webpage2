@@ -13,7 +13,7 @@
             $("#btn1").click(function (){
                 var operador1= $("#operador1").val();
                 var operador2= $("#operador2").val();
-                var operacion= $("#operacion:selected").text();
+                var operacion= $("#operacion :selected").text();
 
                 $.post("/Fibonacci",{operador1:operador1,operador2:operador2,operacion:operacion},function(responseText) {
                     $("#res").text("El resultado es "+responseText);
@@ -32,7 +32,7 @@
 
         <ul class="nav navbar-nav">
             <li><a href="index.jsp">Inicio</a></li>
-            <li><a href="Fibonacci.jsp">Fibonacci</a></li>
+            <li><a href="Fibonacci.jsp">servlets.Fibonacci</a></li>
             <li class="active"><a href="Calculadora.jsp">Calculadora</a></li>
             <li><a href="Extra.jsp">Extra</a></li>
 
@@ -43,8 +43,6 @@
 <div class="container">
     <div class="jumbotron">
     <h1>Calculadora</h1>
-
-        <form action="/Fibonacci" method="post">
 
         <div class="form-group">
             <label>Operador 1</label>
@@ -63,12 +61,8 @@
             <option id="division">DIVISION</option>
         </select>
 
-        <input type="submit" class="btn btn-primary center-block " value="Aceptar">
-
-        </form>
-
         <button id="btn1" class="btn btn-primary center-block">V2 de Calculadora</button>
-        <h2 id="res"></h2>
+        <p id="res"></p>
 
     <footer id="foot01"></footer>
         </div>

@@ -1,4 +1,4 @@
-/**
+package servlets; /**
  * Created by Turpitude on 20/10/2016.
  */
 
@@ -38,22 +38,30 @@ public class Fibonacci extends HttpServlet
 
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
-        int fibo1 = 1;
-        int fibo2 = 1;
         int numero = Integer.parseInt(request.getParameter("sucesiones"));
-        List<Integer> fibo= new ArrayList<Integer>();
-        fibo.add(fibo2);
-        for (int i = 2; i <= numero; i++) {
-            fibo.add(fibo2);
-            fibo2 = fibo1 + fibo2;
-            fibo1 = fibo2 - fibo1;
 
+        if(numero>=0) {
+            int fibo1 = 1;
+            int fibo2 = 1;
+            List<Integer> fibo = new ArrayList<Integer>();
+            fibo.add(fibo2);
+            for (int i = 2; i <= numero; i++) {
+                fibo.add(fibo2);
+                fibo2 = fibo1 + fibo2;
+                fibo1 = fibo2 - fibo1;
+
+            }
+            String json = new Gson().toJson(fibo);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json);
         }
-        String json = new Gson().toJson(fibo);
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(json);
+        else
+        {
+            response.setContentType("application/html");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("ERROR");
+        }
 
         //request.setAttribute("fibo", fibo);
         //request.getRequestDispatcher("/ResultadosFibonacci.jsp").forward(request, response);

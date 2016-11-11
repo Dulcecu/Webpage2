@@ -6,7 +6,7 @@
            version="3.0">
     <servlet>
         <servlet-name>Fibonacci</servlet-name>
-        <servlet-class>Fibonacci</servlet-class>
+        <servlet-class>servlets.Fibonacci</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Fibonacci</servlet-name>

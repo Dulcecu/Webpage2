@@ -30,7 +30,7 @@
             <%-- DIVISIONES DE LA BARRA Y SUS VINCULOS --%>
         <ul class="nav navbar-nav">
             <li><a href="/index.jsp">Inicio</a></li>
-            <li><a href="/Fibonacci.jsp">Fibonacci</a></li>
+            <li><a href="/Fibonacci.jsp">servlets.Fibonacci</a></li>
             <li><a href="/Calculadora.jsp">Calculadora</a></li>
             <li><a href="/Extra.jsp">Extra</a></li>
         </ul>
