@@ -15,7 +15,7 @@
                 var operador2= $("#operador2").val();
                 var operacion= $("#operacion:selected").text();
 
-                $.post("/Fibonacci/", function(responseText) {
+                $.post("/Fibonacci",{operador1:operador1,operador2:operador2,operacion:operacion},function(responseText) {
                     $("#res").text("El resultado es "+responseText);
                 });
             });
@@ -44,7 +44,7 @@
     <div class="jumbotron">
     <h1>Calculadora</h1>
 
-        <form action="/Fibonacci/" method="post">
+        <form action="/Fibonacci" method="post">
 
         <div class="form-group">
             <label>Operador 1</label>
@@ -56,11 +56,11 @@
             <input class="form-control"id="operador2" type="number" step="any">
         </div>
 
-        <select operacion="operacion" id="operacion">
-            <option id="SUMA">SUMA</option>
-            <option id="RESTA">RESTA</option>
-            <option id="MULTIPLICACION">MULTIPLICACION</option>
-            <option id="DIVISION">DIVISION</option>
+        <select name="operacion" id="operacion">
+            <option id="suma">SUMA</option>
+            <option id="resta">RESTA</option>
+            <option id="multiplicacion">MULTIPLICACION</option>
+            <option id="division">DIVISION</option>
         </select>
 
         <input type="submit" class="btn btn-primary center-block " value="Aceptar">

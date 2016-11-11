@@ -12,7 +12,7 @@
         $(document).ready(function(){
             $("#btn1").click(function (){
                 var sucesiones=$("#sucesiones").val();
-                $.get("/Fibonacci/", function(responseJson) {
+                $.get("/Fibonacci/",{sucesiones:sucesiones}, function(responseJson) {
                     var $ul = $("<ul>").appendTo($("#res"));
                     $.each(responseJson, function(index, item) {
                         $("<li>").text(item).appendTo($ul);

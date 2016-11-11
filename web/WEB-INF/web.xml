@@ -10,7 +10,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Fibonacci</servlet-name>
-        <url-pattern>/Fibonacci/</url-pattern>
+        <url-pattern>/Fibonacci</url-pattern>
     </servlet-mapping>
 
     <servlet>
