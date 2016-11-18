@@ -67,6 +67,7 @@ public class EetacDataBaseDAO extends Dao implements EetacInterface {
 
         users us =eetacusers.get(name);
         us.selectEtakemons();
+        return null;
 
     }
 

@@ -53,24 +53,26 @@ public abstract class Dao {
         }
     }
     public void setParams(PreparedStatement prst) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, SQLException {
-        int i=1;
-        for(Field f:fields){
+        int i = 1;
+        for (Field f : fields) {
 
-            m=this.getClass().getMethod(getMethod((f.getName())),null);
-            Object ret=m.invoke(this,null);
+            m = this.getClass().getMethod(getMethod((f.getName())), null);
+            Object ret = m.invoke(this, null);
 
-            if(ret instanceof String){
+            if (ret instanceof String) {
                 prst.setString(i, (String) ret);
-            if(ret instanceof Integer){
+                if (ret instanceof Integer) {
 
-                String id= ret.toString();
-                int id2=Integer.parseInt(id);
-                prst.setInt(i, id2);
-                prst.setInt(4,id2);
+                    String id = ret.toString();
+                    int id2 = Integer.parseInt(id);
+                    prst.setInt(i, id2);
+                    prst.setInt(4, id2);
+                }
+                i++;
+
             }
-            i++;
-
         }
+
     }
     private  String getMethod(String m){
 
