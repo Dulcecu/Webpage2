@@ -2,13 +2,39 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>DSA</title>
-  <meta charset="utf-8">
+    <title>DSA</title>
+    <meta charset="utf-8">
     <%-- CODIGO PARA UTILIZAR LOS BOOTSTRAPS --%>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#btn2").click(function (){
+                var name= $("#name").val();
+                var password= $("#password").val();
+                $.post("/Register",{name:name,password:password},function(responseText) {
+                    if(responseText!="Usuario existente") {
+                        window.location = "User.jsp";
+                        document.cookie=name;
+                    }
+                    else{$("#res").text(responseText);}
+                });
+            });
+            $("#btn1").click(function (){
+                var name= $("#name").val();
+                var password= $("#password").val();
+                $.get("/Register",{name:name,password:password},function(responseText) {
+                    if(responseText!="Error al autenticarse") {
+                        document.cookie=name;
+                        window.location = "User.jsp";
+                    }
+                    else{ $("#res").text(responseText);}
+                });
+            });
+        });
+    </script>
 
 </head>
 
@@ -16,23 +42,37 @@
 
 <div class="container">
     <%-- DIVISION DEL BOOTSRAP LLAMADA JUMBOTRON QUE HACE LA LETRA GRANDE (ESTILO) --%>
-  <div class="jumbotron">
-  <h1>Proyecto servlets</h1>
-  <h2>Bienvenida</h2>
-      <%-- PONE LAS LETRAS EN EL MEDIO --%>
-  <p class="text-center">Utiliza el menu inferior para seleccionar la opcion deseada</p>
+    <div class="jumbotron">
+        <h1>Examen MQ</h1>
 
-      <%-- CREA BOTONES CON VINCULOS INTERNOS ( FIBONACCI CLACULADORA...) --%>
-    <div class="container">
-    <a href="Fibonacci.jsp" class="btn btn-default btn-lg btn-block" role="button">Fibonacci</a>
-    <a href="Calculadora.jsp" class="btn btn-default btn-lg btn-block" role="button">Calculadora</a>
-        <a href="Extra.jsp" class="btn btn-default btn-lg btn-block" role="button">Extra</a>
-    </div>
+        <h2>Bienvenida</h2>
+        <%-- PONE LAS LETRAS EN EL MEDIO --%>
 
-</div>
+        <%-- CREA BOTONES CON VINCULOS INTERNOS ( FIBONACCI CLACULADORA...) --%>
+        <div class="container">
+            <div class="jumbotron">
+                <h1>Inicio Session</h1>
+
+                <div class="form-group">
+                    <label>Name</label>
+                    <input class="form-control" id="name" type="text">
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input class="form-control"id="password" type="password">
+                </div>
+
+                <button id="btn1" class="btn btn-primary center-block">Iniciar session</button>
+                <button id="btn2" class="btn btn-primary center-block">Registrarse</button>
+                <p id="res"></p>
+
+            </div>
+
+        </div>
         <%-- AÑADE UN PIE DE PAGINA ( SE PROGRAMA EN EL JS) --%>
-  <footer id="foot01"></footer>
-  </div>
+        <footer id="foot01"></footer>
+    </div>
 
 </div>
 <%-- NOMBRE DEL JS --%>

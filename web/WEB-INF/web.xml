@@ -5,22 +5,27 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_3_1.xsd"
            version="3.0">
     <servlet>
-        <servlet-name>Fibonacci</servlet-name>
-        <servlet-class>servlets.Fibonacci</servlet-class>
+
+        <servlet-name>Register</servlet-name>
+        <servlet-class>servlets.Register</servlet-class>
+
     </servlet>
+
     <servlet-mapping>
-        <servlet-name>Fibonacci</servlet-name>
-        <url-pattern>/Fibonacci</url-pattern>
+        <servlet-name>Register</servlet-name>
+        <url-pattern>/Register</url-pattern>
     </servlet-mapping>
 
     <servlet>
-    <servlet-name>Main</servlet-name>
-    <servlet-class>Main</servlet-class>
+
+        <servlet-name>Etakemons</servlet-name>
+        <servlet-class>servlets.Etakemons</servlet-class>
+
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>Main</servlet-name>
-        <url-pattern>/Main/</url-pattern>
+        <servlet-name>Etakemons</servlet-name>
+        <url-pattern>/Etakemons</url-pattern>
     </servlet-mapping>
 
 

@@ -1,13 +1,10 @@
+package servlets;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.*;
 
-
-
-/**
- * Created by Turpitude on 10/10/2016.
- */
 public abstract class Dao {
 
     PreparedStatement prst;
@@ -23,7 +20,7 @@ public abstract class Dao {
 
     }
 
-    public  void setId(PreparedStatement prst) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, SQLException {
+    public  void setName(PreparedStatement prst) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, SQLException {
         int i=1;
         for(Field f:fields){
 
@@ -32,10 +29,9 @@ public abstract class Dao {
 
             if(ret instanceof Integer){
 
-                if(f.getName().equals("id")) {
+                if(f.getName().equals("name")) {
                     String id = ret.toString();
-                    int id2 = Integer.parseInt(id);
-                    prst.setInt(i, id2);
+                    prst.setString(i, id);
                     System.out.println("res:" + id);
                 }
             }
@@ -53,13 +49,6 @@ public abstract class Dao {
             if(ret instanceof String){
                 prst.setString(i, (String) ret);
                 System.out.println("res:"+ret.toString());
-            }
-            if(ret instanceof Integer){
-
-                String id= ret.toString();
-                int id2=Integer.parseInt(id);
-                prst.setInt(i, id2);
-                System.out.println("res:"+id);
             }
             i++;
 
@@ -143,58 +132,39 @@ public abstract class Dao {
         }
         command.replace(command.length()-2,command.length()," WHERE ");
         for(Field f :fields){
-            if(f.getName().toString().equals("id")){
+            if(f.getName().toString().equals("name")){
+                command.append(f.getName().toString()+"=? AND");
+            }
+            if(f.getName().toString().equals("password")){
                 command.append(f.getName().toString()+"=?;");
             }
         }
 
         String query=command.toString();
         prst= con.prepareStatement(query);
-        this.setParams(prst);
+        this.addParams(prst);
         prst.execute();
     }
-    public  void delete() throws SQLException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, ClassNotFoundException {
-
-
+    public String selectEtakemons() throws SQLException, ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, Explosiones {
+        StringBuffer tablas=new StringBuffer();
         Connection con= this.getConnection();
         command= new StringBuffer();
-        command.append("DELETE FROM ").append(this.getClass().getSimpleName()+" WHERE ");
+        command.append("SELECT usercol FROM ").append(this.getClass().getSimpleName()+" WHERE ");
 
         System.out.println(this.getClass().getSimpleName());
-
         fields= this.getClass().getFields();
-
         for(Field f :fields){
-            if(f.getName().toString().equals("id")){
+            if(f.getName().toString().equals("name")){
                 command.append(f.getName().toString()+"=?;");
             }
         }
         System.out.println(command.toString());
         String query=command.toString();
         prst= con.prepareStatement(query);
-        this.setId(prst);
-        prst.execute();
-
-    }
-
-    public void select() throws SQLException, ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException {
-
-        Connection con= this.getConnection();
-        command= new StringBuffer();
-        command.append("SELECT * FROM ").append(this.getClass().getSimpleName()+" WHERE ");
-
-        System.out.println(this.getClass().getSimpleName());
-        fields= this.getClass().getFields();
-        for(Field f :fields){
-            if(f.getName().toString().equals("id")){
-                command.append(f.getName().toString()+"=?;");
-            }
-        }
-        System.out.println(command.toString());
-        String query=command.toString();
-        prst= con.prepareStatement(query);
-        this.setId(prst);
+        this.setName(prst);
         ResultSet rs= prst.executeQuery();
+        if(rs.next()==false){throw new Explosiones();}
+        rs.beforeFirst();
         ResultSetMetaData rsmd= rs.getMetaData();
         rs.next();
         for(int i=1;i<rsmd.getColumnCount()+1;i++){
@@ -202,9 +172,11 @@ public abstract class Dao {
 
                 if (rsmd.getColumnTypeName(i).equals("INT")) {
                     System.out.println(rsmd.getColumnLabel(i) + " = " + rs.getInt(i));
+                    tablas.append(rs.getInt(i)+",");
                 }
                 if (rsmd.getColumnTypeName(i).equals("VARCHAR")) {
                     System.out.println(rsmd.getColumnLabel(i) + " = " + rs.getString(i));
+                    tablas.append(rs.getString(i)+",");
                 }
                 if(i==rsmd.getColumnCount()){
                     rs.next();
@@ -216,7 +188,94 @@ public abstract class Dao {
             }
 
         }
+        tablas.append("-");
+        return tablas.toString();
+    }
 
+    public String select() throws SQLException, ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, Explosiones {
+        StringBuffer tablas=new StringBuffer();
+        Connection con= this.getConnection();
+        command= new StringBuffer();
+        command.append("SELECT * FROM ").append(this.getClass().getSimpleName()+" WHERE ");
+
+        System.out.println(this.getClass().getSimpleName());
+        fields= this.getClass().getFields();
+        for(Field f :fields){
+            if(f.getName().toString().equals("name")){
+                command.append(f.getName().toString()+"=?;");
+            }
+        }
+        System.out.println(command.toString());
+        String query=command.toString();
+        prst= con.prepareStatement(query);
+        this.setName(prst);
+        ResultSet rs= prst.executeQuery();
+        if(rs.next()==false){throw new Explosiones();}
+        rs.beforeFirst();
+        ResultSetMetaData rsmd= rs.getMetaData();
+        rs.next();
+        for(int i=1;i<rsmd.getColumnCount()+1;i++){
+            try {
+
+                if (rsmd.getColumnTypeName(i).equals("INT")) {
+                    System.out.println(rsmd.getColumnLabel(i) + " = " + rs.getInt(i));
+                    tablas.append(rs.getInt(i)+",");
+                }
+                if (rsmd.getColumnTypeName(i).equals("VARCHAR")) {
+                    System.out.println(rsmd.getColumnLabel(i) + " = " + rs.getString(i));
+                    tablas.append(rs.getString(i)+",");
+                }
+                if(i==rsmd.getColumnCount()){
+                    rs.next();
+                    i=0;
+                }
+            }
+            catch (Exception e){
+
+            }
+
+        }
+        tablas.append("-");
+        return tablas.toString();
+    }
+
+    public String selectAll() throws SQLException, ClassNotFoundException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, Explosiones {
+        StringBuffer tablas=new StringBuffer();
+        Connection con= this.getConnection();
+        command= new StringBuffer();
+        command.append("SELECT * FROM ").append(this.getClass().getSimpleName()+";");
+        System.out.println(this.getClass().getSimpleName());
+        System.out.println(command.toString());
+        String query=command.toString();
+        prst= con.prepareStatement(query);
+        ResultSet rs= prst.executeQuery();
+        if(rs.next()==false){throw new Explosiones();}
+        rs.beforeFirst();
+        ResultSetMetaData rsmd= rs.getMetaData();
+        rs.next();
+        for(int i=1;i<rsmd.getColumnCount()+1;i++){
+            try {
+
+                if (rsmd.getColumnTypeName(i).equals("INT")) {
+                    System.out.println(rsmd.getColumnLabel(i) + " = " + rs.getInt(i));
+                    tablas.append(rs.getInt(i)+",");
+                }
+                if (rsmd.getColumnTypeName(i).equals("VARCHAR")) {
+                    System.out.println(rsmd.getColumnLabel(i) + " = " + rs.getString(i));
+                    tablas.append(rs.getString(i)+",");
+                }
+                if(i==rsmd.getColumnCount()){
+                    rs.next();
+                    i=0;
+                }
+            }
+            catch (Exception e){
+
+            }
+
+        }
+        tablas.append("-");
+        return tablas.toString();
     }
 
 }
