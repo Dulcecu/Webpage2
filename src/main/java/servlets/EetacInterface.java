@@ -14,7 +14,7 @@ public interface EetacInterface {
     void addUser( String name,String password) throws SQLException, NoSuchMethodException, ClassNotFoundException, IllegalAccessException, InvocationTargetException;
     void updateUser(String name,String password) throws SQLException, NoSuchMethodException, ClassNotFoundException, IllegalAccessException, InvocationTargetException;
     users getUser(String name) throws NoSuchMethodException, Explosiones, IllegalAccessException, SQLException, InvocationTargetException, ClassNotFoundException;
-    List<Etakemon> getetakemons(String name);
+    List<Etakemon> getetakemons(String name) throws NoSuchMethodException, Explosiones, IllegalAccessException, SQLException, InvocationTargetException, ClassNotFoundException;
     void addEtakemon(String name,Etakemon etakemon);
 
 

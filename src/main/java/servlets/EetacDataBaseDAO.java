@@ -63,10 +63,10 @@ public class EetacDataBaseDAO extends Dao implements EetacInterface {
 
     }
 
-    public List<Etakemon> getetakemons(String name) {
+    public List<Etakemon> getetakemons(String name) throws NoSuchMethodException, Explosiones, IllegalAccessException, SQLException, InvocationTargetException, ClassNotFoundException {
 
         users us =eetacusers.get(name);
-        return null;
+        us.selectEtakemons();
 
     }
 

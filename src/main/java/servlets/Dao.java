@@ -32,7 +32,6 @@ public abstract class Dao {
                 if(f.getName().equals("name")) {
                     String id = ret.toString();
                     prst.setString(i, id);
-                    System.out.println("res:" + id);
                 }
             }
             i++;
@@ -48,7 +47,6 @@ public abstract class Dao {
 
             if(ret instanceof String){
                 prst.setString(i, (String) ret);
-                System.out.println("res:"+ret.toString());
             }
             i++;
 
@@ -63,15 +61,12 @@ public abstract class Dao {
 
             if(ret instanceof String){
                 prst.setString(i, (String) ret);
-                System.out.println("res:"+ret.toString());
-            }
             if(ret instanceof Integer){
 
                 String id= ret.toString();
                 int id2=Integer.parseInt(id);
                 prst.setInt(i, id2);
                 prst.setInt(4,id2);
-                System.out.println("res:"+id);
             }
             i++;
 
@@ -89,8 +84,6 @@ public abstract class Dao {
         Connection con= this.getConnection();
         command= new StringBuffer();
         command.append("INSERT INTO ").append(this.getClass().getSimpleName()+" (");
-
-        System.out.println(this.getClass().getSimpleName());
         fields= this.getClass().getFields();
 
         for(Field f : fields)
@@ -107,7 +100,6 @@ public abstract class Dao {
         }
         command.replace(command.length()-1,command.length(),");");
 
-        System.out.println(command.toString());
 
         // CHANGE
         String query=command.toString();
@@ -121,8 +113,6 @@ public abstract class Dao {
         Connection con= this.getConnection();
         command= new StringBuffer();
         command.append("UPDATE ").append(this.getClass().getSimpleName()+" SET ");
-
-        System.out.println(this.getClass().getSimpleName());
 
         fields= this.getClass().getFields();
         for(Field f : fields)
@@ -151,14 +141,12 @@ public abstract class Dao {
         command= new StringBuffer();
         command.append("SELECT usercol FROM ").append(this.getClass().getSimpleName()+" WHERE ");
 
-        System.out.println(this.getClass().getSimpleName());
         fields= this.getClass().getFields();
         for(Field f :fields){
             if(f.getName().toString().equals("name")){
                 command.append(f.getName().toString()+"=?;");
             }
         }
-        System.out.println(command.toString());
         String query=command.toString();
         prst= con.prepareStatement(query);
         this.setName(prst);
@@ -171,11 +159,9 @@ public abstract class Dao {
             try {
 
                 if (rsmd.getColumnTypeName(i).equals("INT")) {
-                    System.out.println(rsmd.getColumnLabel(i) + " = " + rs.getInt(i));
                     tablas.append(rs.getInt(i)+",");
                 }
                 if (rsmd.getColumnTypeName(i).equals("VARCHAR")) {
-                    System.out.println(rsmd.getColumnLabel(i) + " = " + rs.getString(i));
                     tablas.append(rs.getString(i)+",");
                 }
                 if(i==rsmd.getColumnCount()){
@@ -198,14 +184,12 @@ public abstract class Dao {
         command= new StringBuffer();
         command.append("SELECT * FROM ").append(this.getClass().getSimpleName()+" WHERE ");
 
-        System.out.println(this.getClass().getSimpleName());
         fields= this.getClass().getFields();
         for(Field f :fields){
             if(f.getName().toString().equals("name")){
                 command.append(f.getName().toString()+"=?;");
             }
         }
-        System.out.println(command.toString());
         String query=command.toString();
         prst= con.prepareStatement(query);
         this.setName(prst);
@@ -218,11 +202,9 @@ public abstract class Dao {
             try {
 
                 if (rsmd.getColumnTypeName(i).equals("INT")) {
-                    System.out.println(rsmd.getColumnLabel(i) + " = " + rs.getInt(i));
                     tablas.append(rs.getInt(i)+",");
                 }
                 if (rsmd.getColumnTypeName(i).equals("VARCHAR")) {
-                    System.out.println(rsmd.getColumnLabel(i) + " = " + rs.getString(i));
                     tablas.append(rs.getString(i)+",");
                 }
                 if(i==rsmd.getColumnCount()){
@@ -244,8 +226,6 @@ public abstract class Dao {
         Connection con= this.getConnection();
         command= new StringBuffer();
         command.append("SELECT * FROM ").append(this.getClass().getSimpleName()+";");
-        System.out.println(this.getClass().getSimpleName());
-        System.out.println(command.toString());
         String query=command.toString();
         prst= con.prepareStatement(query);
         ResultSet rs= prst.executeQuery();
@@ -257,11 +237,9 @@ public abstract class Dao {
             try {
 
                 if (rsmd.getColumnTypeName(i).equals("INT")) {
-                    System.out.println(rsmd.getColumnLabel(i) + " = " + rs.getInt(i));
                     tablas.append(rs.getInt(i)+",");
                 }
                 if (rsmd.getColumnTypeName(i).equals("VARCHAR")) {
-                    System.out.println(rsmd.getColumnLabel(i) + " = " + rs.getString(i));
                     tablas.append(rs.getString(i)+",");
                 }
                 if(i==rsmd.getColumnCount()){
